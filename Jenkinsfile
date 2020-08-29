@@ -1,34 +1,24 @@
-properties([pipelineTriggers([githubPush()])]) 
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
-  /* specify nodes for executing */ 
-  agent  any
+    agent any
     stages {
-      stage('Sonar Qube Scan') {
-        withSonarQubeEnv(credentialsId: '2', installationName: 'si sonar')
-        steps {
-          sh './gradlew sonarqube'
-        }
-      }
-      stage('Unit & Integration Tests') {
-        steps {
-          script {
-            try {
-              sh './gradlew clean test --no-daemon' //run a gradle task
-            } 
-            finally {
-              junit '**/build/test-results/test/*.xml' //make the junit test results available in any case (success & failure)
+        stage('Build') {
+            steps {
+                echo 'echo build'
             }
-          }
         }
-      }
-      stage('Build Gradle') {
-        steps {
-          sh './gradlew build'
+        stage('Test') {
+            steps {
+                echo 'test'
+            }
         }
-      }
-  post {
-    always {
-      deleteDir()
+        stage('Deploy') {
+            when { tag "release-*" }
+            steps {
+                echo 'Deploying only because this commit is tagged...'
+                echo 'make deploy'
+            }
+        }
     }
-  }
 }
