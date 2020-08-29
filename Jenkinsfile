@@ -26,9 +26,10 @@ pipeline {
           sh './gradlew build'
         }
       }
-  post {
-    always {
-      deleteDir()
+    post {
+      always {
+        deleteDir()
+      }
     }
   }
 }
