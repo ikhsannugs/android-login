@@ -1,11 +1,12 @@
 properties([pipelineTriggers([githubPush()])]) 
+
 pipeline {
   /* specify nodes for executing */ 
   agent  any
     stages {
       stage('Sonar Qube Scan') {
-        withSonarQubeEnv(credentialsId: '2', installationName: 'si sonar')
         steps {
+          withSonarQubeEnv(credentialsId: '2', installationName: 'si sonar')
           sh './gradlew sonarqube'
         }
       }
@@ -26,10 +27,10 @@ pipeline {
           sh './gradlew build'
         }
       }
+    }
     post {
       always {
         deleteDir()
       }
     }
   }
-}
