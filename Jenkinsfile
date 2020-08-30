@@ -39,9 +39,6 @@ pipeline {
         }
       }
       stage('Deploy Artifact') {
-        when {
-           changelog 'deployment'
-        }
         input {
           message "Should we continue?"
             ok "Yes, we should."
