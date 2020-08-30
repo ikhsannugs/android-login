@@ -23,9 +23,7 @@ pipeline {
                         sh './gradlew clean test --no-daemon' //run a gradle task
                     } 
                     finally {
-                        echo "Release Test Result"
                         junit '**app/build/test-results/testReleaseUnitTest/*.xml'
-                        echo "Debug Test Result"
                         junit '**app/build/test-results/testDebugUnitTest/*.xml'
                     }
                 }
