@@ -20,6 +20,7 @@ pipeline {
         steps {
           script {
             try {
+              sh "echo ${ANDROID_HOME}"
               sh './gradlew clean test --no-daemon' //run a gradle task
             } 
             finally {
