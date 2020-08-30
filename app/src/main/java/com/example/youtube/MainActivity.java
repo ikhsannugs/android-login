@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
-    private String BASE_URL = "http://10.0.2.2:3000";
+    private String BASE_URL = "http://ikhsannugs.xyz:3000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
