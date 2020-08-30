@@ -39,6 +39,9 @@ pipeline {
         }
       }
       stage('Deploy Artifact') {
+        when {
+           changelog 'deployment'
+        }
         input {
           message "Should we continue?"
             ok "Yes, we should."
@@ -63,5 +66,17 @@ pipeline {
           }
         }
       }
+    }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir()
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        failure {
+            echo 'I failed :('
+        }
     }
 }
