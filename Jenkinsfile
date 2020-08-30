@@ -10,7 +10,8 @@ pipeline {
           def scannerHome = tool 'sonarscanner';
             withSonarQubeEnv("sonarserver") {
             sh "${tool("sonarscanner")}/bin/sonar-scanner \
-            -Dsonar.projectKey=test-node-js"
+            -Dsonar.projectKey=test-node-js \
+            -Dsonar.java.binaries=."
             }
           }
         }
