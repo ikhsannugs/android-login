@@ -1,15 +1,17 @@
 properties([pipelineTriggers([githubPush()])]) 
 
-pipeline { 
+pipeline {
+  /* specify nodes for executing */ 
   agent  any
     stages {
       stage('Sonar Qube Scan') {
         steps {
           script {
           def scannerHome = tool 'sonarscanner';
-             withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonarserver') {
-             sh "${tool("sonarscanner")}/bin/sonar-scanner \
-             -Dsonar.projectKey=android-login \
+           withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonarserver') 
+           {
+           sh "${tool("sonarscanner")}/bin/sonar-scanner \
+           -Dsonar.projectKey=android-login
                }
            }
         }
