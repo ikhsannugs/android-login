@@ -51,14 +51,14 @@ pipeline {
             if ( env.GIT_BRANCH == 'staging' ) {
               sh "mv ${WORKSPACE}/app/build/outputs/apk/release/*.apk ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk "
               sh "mv ${WORKSPACE}/app/build/outputs/apk/debug/*.apk ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk "
-              sh ".${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk oss://android-login-stagging/Release/"
-              sh ".${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk oss://android-login-stagging/Debug/"
+              sh "${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk oss://android-login-stagging/Release/"
+              sh "${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk oss://android-login-stagging/Debug/"
             }
             else if ( env.GIT_BRANCH == 'master' ) {
               sh "mv ${WORKSPACE}/app/build/outputs/apk/release/*.apk ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk "
               sh "mv ${WORKSPACE}/app/build/outputs/apk/debug/*.apk ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk "
-              sh ".${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk oss://android-login-production/Release/"
-              sh ".${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk oss://android-login-production/Debug/"
+              sh "${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/release/Release-stag-${BUILD_NUMBER}.apk oss://android-login-production/Release/"
+              sh "${HOME}/ossutil64 cp ${WORKSPACE}/app/build/outputs/apk/debug/Debug-stag-${BUILD_NUMBER}.apk oss://android-login-production/Debug/"
             }
           }
         }
