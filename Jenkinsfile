@@ -5,9 +5,14 @@ pipeline {
   agent  any
     stages {
       stage('Sonar Qube Scan') {
+        environment {
+        scannerHome = tool 'sonarscanner'
+        }
         steps {
           withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonarserver')
-          {sh './gradlew sonarqube'}
+          {
+            sh "${scannerHome}/bin/sonar-scanner"
+          }
         }
       }
       stage('Unit & Integration Tests') {
