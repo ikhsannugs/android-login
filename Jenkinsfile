@@ -64,4 +64,19 @@ pipeline {
         }
       }
     }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir()
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+    }
 }
