@@ -12,7 +12,7 @@ pipeline {
               def scannerHome = tool 'sonarscanner';
                 withSonarQubeEnv("sonarserver") {
                 sh "${tool("sonarscanner")}/bin/sonar-scanner \
-                -Dsonar.projectKey=android-login-${BRANCH} \
+                -Dsonar.projectKey=android-login-${BRANCH_NAME} \
                 -Dsonar.java.binaries=."
                 }
               }
