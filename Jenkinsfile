@@ -25,8 +25,6 @@ pipeline {
                     finally {
                         echo "Release Test Result"
                         junit '**app/build/test-results/testReleaseUnitTest/*.xml'
-                    }
-                    finally {
                         echo "Debug Test Result"
                         junit '**app/build/test-results/testDebugUnitTest/*.xml'
                     }
