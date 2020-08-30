@@ -11,7 +11,8 @@ pipeline {
         steps {
           withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonarserver')
           {
-            sh "${scannerHome}/bin/sonar-scanner"
+            sh "${scannerHome}/bin/sonar-scanner" \
+            -Dsonar.projectKey=android-login
           }
         }
       }
