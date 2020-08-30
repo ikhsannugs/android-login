@@ -19,8 +19,8 @@ pipeline {
       stage('Unit & Integration Tests') {
         steps {
           script {
+            echo "${ANDROID_HOME}"
             try {
-              sh "echo ${ANDROID_HOME}"
               sh './gradlew clean test --no-daemon' //run a gradle task
             } 
             finally {
