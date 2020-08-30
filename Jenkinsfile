@@ -39,6 +39,9 @@ pipeline {
         }
       }
       stage('Deploy Artifact') {
+        when {
+           changelog 'deployment'
+        }
         input {
           message "Should we continue?"
             ok "Yes, we should."
@@ -71,9 +74,6 @@ pipeline {
         }
         success {
             echo 'I succeeded!'
-        }
-        unstable {
-            echo 'I am unstable :/'
         }
         failure {
             echo 'I failed :('
